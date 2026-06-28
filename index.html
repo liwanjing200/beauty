@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>透明感清单 · 变美产品全集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@200;300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     如何替换为真实图片：
+     在下方 PRODUCTS 数据里，给某个产品加上 img 字段即可，例如：
+        { cat:"skincare", tier:"core", brand:"Melano CC", name:"...", img:"images/melano.jpg" }
+     img 可以是网络链接，也可以是放在本文件旁边的图片文件名。
+     留空（不写 img）则显示磨砂占位图。
+     ============================================================ */
+
+  :root{
+    --paper:#F4F6F4;
+    --paper-2:#EAF0EC;
+    --ink:#222826;
+    --ink-soft:#5E6A64;
+    --line:#D7DEDA;
+    --card:#FFFFFFcc;
+    --water:#5F8E82;        /* 必买 · 水绿 */
+    --water-bg:#E2ECE7;
+    --slate:#7E96A6;        /* 平价 · 雾蓝 */
+    --slate-bg:#E6ECEF;
+    --gold:#A9925E;         /* 奢华 · 香槟 */
+    --gold-bg:#EEE8DA;
+    --shadow:0 1px 2px rgba(34,40,38,.04),0 12px 32px -18px rgba(34,40,38,.18);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Noto Sans SC",system-ui,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(120% 80% at 80% -10%, #E6F0EB 0%, rgba(230,240,235,0) 55%),
+      radial-gradient(100% 70% at 0% 0%, #EFEAE2 0%, rgba(239,234,226,0) 50%),
+      var(--paper);
+    background-attachment:fixed;
+    font-weight:300;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px;}
+
+  /* ---------- Hero ---------- */
+  header.hero{padding:72px 0 34px;}
+  .eyebrow{
+    font-size:11px;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--water);font-weight:500;margin:0 0 18px;
+  }
+  h1.title{
+    font-family:"Noto Serif SC",serif;font-weight:600;
+    font-size:clamp(38px,7vw,68px);line-height:1.08;letter-spacing:.01em;
+    margin:0 0 22px;
+  }
+  h1.title .thin{font-weight:400;color:var(--ink-soft);}
+  .lede{
+    max-width:640px;font-size:clamp(15px,2.2vw,17px);color:var(--ink-soft);
+    margin:0 0 30px;font-weight:300;
+  }
+  .lede b{font-weight:500;color:var(--ink);}
+  .stats{display:flex;gap:30px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px;}
+  .stat .n{font-family:"Noto Serif SC",serif;font-size:30px;font-weight:600;line-height:1;}
+  .stat .l{font-size:12px;color:var(--ink-soft);letter-spacing:.06em;margin-top:6px;}
+
+  /* ---------- Controls ---------- */
+  .controls{
+    position:sticky;top:0;z-index:30;
+    background:rgba(244,246,244,.82);backdrop-filter:blur(14px);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:14px 0;margin-top:30px;
+  }
+  .controls .wrap{display:flex;flex-direction:column;gap:12px;}
+  .search{
+    width:100%;border:1px solid var(--line);background:#fff;border-radius:0;
+    padding:11px 14px;font-family:inherit;font-size:14px;color:var(--ink);
+    font-weight:300;letter-spacing:.02em;
+  }
+  .search::placeholder{color:#9AA6A1;}
+  .search:focus{outline:2px solid var(--water);outline-offset:-1px;}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;}
+  .chip{
+    border:1px solid var(--line);background:transparent;color:var(--ink-soft);
+    font-family:inherit;font-size:12.5px;font-weight:400;letter-spacing:.04em;
+    padding:7px 13px;cursor:pointer;border-radius:999px;transition:.18s;
+  }
+  .chip:hover{border-color:var(--water);color:var(--ink);}
+  .chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .chip.tier[aria-pressed="true"]{background:var(--water);border-color:var(--water);}
+  .chip:focus-visible{outline:2px solid var(--water);outline-offset:2px;}
+  .chip-label{font-size:11px;color:#9AA6A1;letter-spacing:.1em;align-self:center;margin-right:2px;}
+
+  /* ---------- Sections ---------- */
+  main{padding:44px 0 10px;}
+  section.group{margin-bottom:18px;scroll-margin-top:120px;}
+  .group-head{display:flex;align-items:baseline;gap:14px;margin:34px 0 20px;}
+  .group-head h2{
+    font-family:"Noto Serif SC",serif;font-weight:600;font-size:25px;margin:0;letter-spacing:.02em;
+  }
+  .group-head .en{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#9AA6A1;}
+  .group-head .ct{margin-left:auto;font-size:12px;color:var(--ink-soft);}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:16px;}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);
+    display:flex;flex-direction:column;overflow:hidden;
+    opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease,border-color .2s;
+  }
+  .card.in{opacity:1;transform:none;}
+  .card:hover{border-color:#B9C6C0;}
+
+  .thumb{
+    aspect-ratio:4/3;position:relative;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#fff 0%,var(--water-bg) 100%);
+    border-bottom:1px solid var(--line);overflow:hidden;
+  }
+  .thumb img{width:100%;height:100%;object-fit:cover;}
+  .mono{
+    font-family:"Noto Serif SC",serif;font-size:34px;font-weight:500;color:#fff;
+    width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:rgba(95,142,130,.32);backdrop-filter:blur(4px);
+    border:1px solid rgba(255,255,255,.55);letter-spacing:.02em;
+  }
+  .ph-tag{position:absolute;bottom:8px;right:9px;font-size:9.5px;letter-spacing:.14em;color:#8B9A93;}
+
+  .body{padding:15px 15px 16px;display:flex;flex-direction:column;gap:7px;flex:1;}
+  .brand{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;}
+  .name{font-family:"Noto Serif SC",serif;font-size:16px;font-weight:500;line-height:1.35;color:var(--ink);}
+  .note{font-size:12.5px;color:var(--ink-soft);font-weight:300;line-height:1.55;flex:1;}
+  .meta{display:flex;align-items:center;justify-content:space-between;margin-top:4px;gap:8px;}
+  .price{font-size:13px;font-weight:400;color:var(--ink);}
+  .badge{font-size:10.5px;letter-spacing:.06em;padding:3px 8px;border-radius:999px;white-space:nowrap;font-weight:500;}
+  .badge.core{background:var(--water-bg);color:#3C5C52;}
+  .badge.value{background:var(--slate-bg);color:#445766;}
+  .badge.lux{background:var(--gold-bg);color:#7A663B;}
+
+  /* ---------- 已买按钮 / 已购状态 ---------- */
+  .buy{
+    margin-top:9px;width:100%;
+    border:1px solid var(--line);background:transparent;color:var(--ink-soft);
+    font-family:inherit;font-size:12px;font-weight:400;letter-spacing:.08em;
+    padding:8px 10px;cursor:pointer;border-radius:999px;transition:.18s;
+  }
+  .buy:hover{border-color:var(--water);color:var(--ink);}
+  .buy:focus-visible{outline:2px solid var(--water);outline-offset:2px;}
+  /* 已购：卡片其余内容轻微变暗，按钮保持高亮打勾 */
+  .card.bought .thumb,
+  .card.bought .brand,
+  .card.bought .name,
+  .card.bought .note,
+  .card.bought .meta{opacity:.5;transition:opacity .25s;}
+  .card.bought .buy{
+    background:var(--water-bg);color:#3C5C52;border-color:var(--water);
+    font-weight:500;opacity:1;
+  }
+  .card.bought .buy:hover{color:#2C463E;}
+
+  .empty{display:none;text-align:center;padding:60px 0;color:var(--ink-soft);font-weight:300;}
+  .empty.show{display:block;}
+
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:34px 0 60px;}
+  footer .note-box{
+    background:#fff;border:1px solid var(--line);padding:20px 22px;font-size:13px;color:var(--ink-soft);
+    font-weight:300;line-height:1.7;
+  }
+  footer .note-box b{color:var(--ink);font-weight:500;}
+  footer .sign{
+    font-family:"Noto Serif SC",serif;font-size:17px;color:var(--ink);margin:24px 0 0;font-weight:500;
+  }
+
+  @media (max-width:600px){
+    header.hero{padding:54px 0 26px;}
+    .grid{grid-template-columns:1fr 1fr;gap:11px;}
+    .thumb .mono{width:50px;height:50px;font-size:26px;}
+    .name{font-size:14px;}
+    .body{padding:12px;}
+    .note{font-size:11.5px;}
+    .group-head h2{font-size:21px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .card{opacity:1;transform:none;transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">A Curated Beauty Directory</p>
+    <h1 class="title">透明感清单<br><span class="thin">变美产品全集</span></h1>
+    <p class="lede">为「日本女人感」整理的一套完整产品——护肤、彩妆、头发、身体、香氛、口腔到仪器，按<b>品类</b>和<b>优先级</b>排好。真正的关键从来不是买更多，而是把<b>先买的这几样用满三个月</b>。</p>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <input id="search" class="search" type="search" placeholder="搜索产品或品牌…" aria-label="搜索产品或品牌" />
+    <div class="chips" id="catChips" role="group" aria-label="按品类筛选"></div>
+    <div class="chips" id="tierChips" role="group" aria-label="按优先级筛选">
+      <span class="chip-label">优先级</span>
+    </div>
+    <div class="chips">
+      <span class="chip-label">显示</span>
+      <button id="unboughtToggle" class="chip" type="button" aria-pressed="false">只看未买</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <div id="sections"></div>
+    <p class="empty" id="empty">没有符合的产品，换个关键词或清除筛选试试。</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="note-box">
+      <b>关于图片</b>：每张卡片现在显示的是磨砂占位图（品牌首字母）。要换成真实产品图，打开本文件，在 <b>PRODUCTS</b> 数据里给对应产品加一行 <b>img:"图片链接或文件名"</b> 即可——网络链接或放在本文件旁的图片都行，留空则继续显示占位图。
+    </div>
+    <p class="sign">先买的那几样用满，再谈别的。脸的状态，七成是睡出来的。</p>
+  </div>
+</footer>
+
+<script>
+/* ====== 产品数据：加 img 字段即可显示真实图片 ====== */
+const CATS = [
+  {id:"skincare", zh:"护肤", en:"Skincare"},
+  {id:"makeup",   zh:"彩妆", en:"Makeup"},
+  {id:"hair",     zh:"头发", en:"Hair"},
+  {id:"body",     zh:"身体 / 沐浴", en:"Body"},
+  {id:"scent",    zh:"香氛", en:"Fragrance"},
+  {id:"oral",     zh:"口腔", en:"Oral Care"},
+  {id:"tools",    zh:"仪器 / 工具", en:"Devices"},
+  {id:"inner",    zh:"内服", en:"Inner Beauty"},
+];
+const TIERS = {
+  core:  {zh:"必买地基", cls:"core"},
+  value: {zh:"高性价比", cls:"value"},
+  lux:   {zh:"奢华天花板", cls:"lux"},
+};
+
+const PRODUCTS = [
+  // —— 护肤 ——
+  {cat:"skincare",tier:"core",brand:"Anessa",name:"Perfect UV 防晒",price:"≈¥3,000",note:"J-beauty 防晒标杆，抗汗抗水、肤感好。抗老第一杠杆。",img:"https://murasakicosmetics.com/cdn/shop/products/Anessa-Sunscreen-Milk-Spf50.jpg?v=1655670181"},
+  {cat:"skincare",tier:"value",brand:"Skin Aqua",name:"水活防晒精华",price:"≈¥800",note:"平价好用，你已在用，日常足够。",img:"https://murasakicosmetics.com/cdn/shop/products/Skin-Aqua-Tone-Up-tube.jpg?v=1614508560"},
+  {cat:"skincare",tier:"lux",brand:"La Roche-Posay",name:"Anthelios UVMune 400",price:"约¥6,500",note:"含 Mexoryl 400，UVA 防护全球最高梯队、无白雾。",img:"https://cdn.shopify.com/s/files/1/0419/5447/6194/products/La-Roche-Posay-Anthelios-UVmune-400-Invisible-Fluid-SPF-50.jpg?v=1641982181"},
+  {cat:"skincare",tier:"value",brand:"Beauty of Joseon",name:"Relief Sun 防晒",price:"约¥2,900",note:"K-beauty 性价比之王，肤感像乳液。",img:"https://koreanskincare.com/cdn/shop/files/boj_reliefsun.webp?v=1690402369"},
+  {cat:"skincare",tier:"core",brand:"Melano CC",name:"维C 美容液",price:"¥1,210",note:"便宜、提亮、淡痘印，混合皮友好，密封不易氧化。",img:"https://murasakicosmetics.com/cdn/shop/files/melano-CC-essence-new-packaging_1200x1200.jpg?v=1770554042"},
+  {cat:"skincare",tier:"lux",brand:"SkinCeuticals",name:"C E Ferulic 维C精华",price:"约¥27,500",note:"维C 黄金标准，临床证据最多。",img:"https://cdn.shopify.com/s/files/1/0419/5447/6194/files/CEF-1.png?v=1773134867"},
+  {cat:"skincare",tier:"value",brand:"Timeless",name:"20% Vitamin C+E+阿魏酸",price:"约¥4,100",note:"配方思路接近大牌的平价替代。",img:"https://cdn.shopify.com/s/files/1/1670/9243/files/CEF20_MAIN_IMAGE_BADGE_f892dbc8-e18b-4df8-be97-b1235567c04c.png?v=1778342705"},
+  {cat:"skincare",tier:"value",brand:"The Ordinary",name:"Niacinamide 10% + Zinc",price:"约¥1,100",note:"控油、收毛孔、匀肤色。混合皮命定成分。",img:"https://cdn.shopify.com/s/files/1/0419/5447/6194/files/The-Ordinary-Niacinamide-10_-_-Zinc-1_-30ml.jpg?v=1739976033"},
+  {cat:"skincare",tier:"value",brand:"The INKEY List",name:"Niacinamide 10%",price:"约¥1,600",note:"更温和的烟酰胺，肤感润不刺激。",img:"https://cdn.shopify.com/s/files/1/0428/8498/9091/files/TheINKEYList_NiacinamideSerum_30mlbottle_1000x1000_5c1f85db-53c9-48cd-975e-e70371e617a1.png?v=1700586730"},
+  {cat:"skincare",tier:"core",brand:"CeraVe",name:"抗皱视黄醇精华",price:"约¥4,100",note:"包裹型 A 醇+神经酰胺，最不翻车的入门款。",img:"https://cdn.shopify.com/s/files/1/0419/5447/6194/products/CeraVe-Resurfacing-Retinol-Serum.jpg?v=1659621298"},
+  {cat:"skincare",tier:"lux",brand:"Medik8",name:"Crystal Retinal",price:"约¥11,300",note:"醛式 A 醇，温和高效，进阶抗老。",img:"https://scdn.speedsize.com/fd01c063-4aa1-453d-b317-e8f709b2bfe7/us.medik8.com/cdn/shop/files/20260217_-_Crystal_Retinal_24_-_PDP_-_Crystal_Retinal_1_-_Packshot_-_US.png?v=1772044240&width=1024"},
+  {cat:"skincare",tier:"core",brand:"Paula's Choice",name:"2% BHA 水杨酸精华",price:"约¥5,700",note:"清毛孔、去角质、改善黑头的全球标杆。",img:"https://static.thcdn.com/productimg/original/11174178-1625306470592034.jpg"},
+  {cat:"skincare",tier:"core",brand:"Curél",name:"潤浸保湿 洁面",price:"≈¥900",note:"氨基酸系温和洁面，敏感肌友好，不拉干。",img:"https://murasakicosmetics.com/cdn/shop/files/CurelIntensiveMoistureCareFoamingFacialWash.jpg?v=1733052695"},
+  {cat:"skincare",tier:"value",brand:"La Roche-Posay",name:"Toleriane 洁面",price:"约¥2,400",note:"皮肤科常推的温和洁面。",img:"https://cdn.shopify.com/s/files/1/0419/5447/6194/products/La-Roche-Posay-Toleriane-Dermo-Cleanser-400ml.jpg?v=1655200598"},
+  {cat:"skincare",tier:"core",brand:"肌ラボ",name:"白潤プレミアム 化粧水",price:"≈¥900",note:"补水+传明酸提亮，日系透明感地基。",img:"https://murasakicosmetics.com/cdn/shop/products/Shirojyun-NEW-lotion.jpg?v=1620384725"},
+  {cat:"skincare",tier:"core",brand:"CeraVe",name:"PM 乳液",price:"约¥2,600",note:"混合皮成功率最高的一支：控油+修护一步到位。",img:"https://cdn.shopify.com/s/files/1/0419/5447/6194/products/8141.jpg?v=1695202888"},
+  {cat:"skincare",tier:"value",brand:"La Roche-Posay",name:"Toleriane Double Repair",price:"约¥3,200",note:"神经酰胺+烟酰胺，敏感混合皮稳妥款。",img:"https://cdn.shopify.com/s/files/1/0419/5447/6194/products/11550.jpg?v=1695996303"},
+  {cat:"skincare",tier:"lux",brand:"Tatcha",name:"The Water Cream",price:"约¥11,300",note:"日系配方，清爽水光，混合皮的贵价天花板。",img:"https://tatcha.com/cdn/shop/files/WaterCream-pdp-FullSize-MainImage-1200x1200_c9ae41c1-e15c-46cc-b688-b120e45b0869.jpg?v=1766157498&width=2048"},
+  {cat:"skincare",tier:"core",brand:"DHC",name:"深层卸妆油",price:"≈¥1,500",note:"天天防晒上妆必须卸干净，橄榄油基底、经典平价。",img:"https://murasakicosmetics.com/cdn/shop/products/Deep-Cleansing-Oil-Texture.jpg?v=1653593920"},
+  {cat:"skincare",tier:"value",brand:"FANCL",name:"Mild 卸妆油",price:"≈¥1,800",note:"无防腐剂无香料，敏感肌最稳。",img:"https://murasakicosmetics.com/cdn/shop/products/Fancl-Mild-Oil-packaging_1200x1200.jpg?v=1624884677"},
+  {cat:"skincare",tier:"lux",brand:"Shu Uemura",name:"Ultime8 卸妆油",price:"≈¥15,400",note:"山茶油基底，奢华顺滑。",img:"https://japanesetaste.com/cdn/shop/files/Shu-Uemura-Ultime8-Sublime-Cleansing-Oil-450ml-1-2024-07-11T03_15_21.229Z.jpg?crop=center&height=1200&v=1746161338&width=1200"},
+  {cat:"skincare",tier:"value",brand:"Suisai",name:"酵素洗顔粉",price:"≈¥1,800",note:"单次小包，溶解角质黑头，做透明感的秘密武器。",img:"https://murasakicosmetics.com/cdn/shop/files/SuisaiBeautyClearPowderWash.jpg?v=1763472273"},
+  {cat:"skincare",tier:"value",brand:"Lululun",name:"每日面膜",price:"≈¥60/片",note:"日常补水提亮，温和无酒精，天天敷。",img:"https://murasakicosmetics.com/cdn/shop/products/Lululun-Pure-Balance-Pink.jpg?v=1663612924"},
+  {cat:"skincare",tier:"value",brand:"美迪惠尔 Mediheal",name:"针对性精华面膜",price:"≈¥200/片",note:"按诉求选系列（控痘/美白/弹力），精华更浓。",img:"https://cdn.shopify.com/s/files/1/0249/1218/files/Mediheal-Madecassoside-Essential-Mask.jpg?v=1756218510"},
+  {cat:"skincare",tier:"lux",brand:"La Roche-Posay",name:"Cicaplast B5 修复面膜",price:"≈¥300/片",note:"泛红、晒后、刷酸后的急救镇定面膜。",img:"https://cdn.shopify.com/s/files/1/0419/5447/6194/products/3c48f4344c4f7dc80c6ab03aadbef6e9.jpg?v=1695916003"},
+  {cat:"skincare",tier:"value",brand:"Laneige",name:"睡眠唇膜",price:"约¥3,900",note:"全球唇膜天花板，晚上厚敷、唇部柔软有血色。",img:"https://sentisenti.com/cdn/shop/products/laneige-lip-sleeping-pack-ex-berry-main-oo35mm.jpg?v=1762457741&width=1280"},
+
+  // —— 彩妆 ——
+  {cat:"makeup",tier:"lux",brand:"Armani",name:"Luminous Silk 粉底",price:"约¥11,200",note:"奢妆粉底标杆，中等遮瑕+高级光泽。",img:"https://maisonbeautique.com/cdn/shop/files/3360372075554_main.jpg?v=1716605050"},
+  {cat:"makeup",tier:"lux",brand:"Charlotte Tilbury",name:"Hollywood Flawless Filter",price:"约¥7,900",note:"妆前/底妆二合一，做水光肌。",img:"https://cdn.shopify.com/s/files/1/0283/0185/2747/files/variant_images-size-4Medium-5060332329526-1.jpg?v=1771604763"},
+  {cat:"makeup",tier:"lux",brand:"NARS",name:"Radiant Creamy 遮瑕",price:"约¥5,200",note:"化妆师包里的常青遮瑕。",img:"https://cdn.shopify.com/s/files/1/0283/0185/2747/files/variant_images-size-CafeconLecheL26-607845012252-1.jpg?v=1774906710"},
+  {cat:"makeup",tier:"value",brand:"キャンメイク Canmake",name:"卡拉混合遮瑕",price:"≈¥825",note:"局部遮黑眼圈/痘印，平价好用。",img:"https://cdn.shopify.com/s/files/1/1969/5775/files/P-1-CAN-CC-LB-01-Canmake_Color_Mixing_Concealer_Light_Beige_SPF50_3.jpg?v=1746159236"},
+  {cat:"makeup",tier:"value",brand:"セザンヌ Cezanne",name:"超細芯眉笔",price:"¥550",note:"0.8mm 极细芯，画平直眉，大人感关键。"},
+  {cat:"makeup",tier:"lux",brand:"Anastasia",name:"Brow Wiz 眉笔",price:"约¥4,100",note:"细芯眉笔标杆。",img:"https://cdn.shopify.com/s/files/1/0751/0219/1907/products/abh_brow_wiz_Dark-Brown_0e14ce72-89da-4e74-a73d-3164aa70d2cf.jpg?v=1744915732"},
+  {cat:"makeup",tier:"value",brand:"excel",name:"スキニーリッチシャドウ",price:"≈¥1,650",note:"4 色棕调自然渐层，大人感名品。",img:"https://cdn.shopify.com/s/files/1/1969/5775/files/Excel-Skinny-Rich-Shadow-Eyeshadow-1-2024-08-07T07_19_19.650Z.jpg?v=1746155060"},
+  {cat:"makeup",tier:"lux",brand:"SUQQU",name:"晶采七色眼影",price:"≈¥7,700",note:"日系眼影天花板，自然显高级。",img:"https://cdn.shopify.com/s/files/1/0346/3403/9341/products/suqqu-signature-color-eyes-952975.png?v=1688732520"},
+  {cat:"makeup",tier:"value",brand:"セザンヌ Cezanne",name:"ナチュラルチーク 腮红",price:"¥396",note:"自然血色、提气色，超便宜好用。",img:"https://cdn.shopify.com/s/files/1/0346/3403/9341/products/cezanne-natural-cheek-n-339186.png?v=1688730671"},
+  {cat:"makeup",tier:"lux",brand:"SUQQU",name:"纯色腮红",price:"≈¥6,600",note:"最懂「自然透出的血色」的日本顶奢。",img:"https://cdn.shopify.com/s/files/1/0346/3403/9341/files/500120-BCB01-01.jpg?v=1720167791"},
+  {cat:"makeup",tier:"value",brand:"セザンヌ Cezanne",name:"高光",price:"¥693",note:"鼻梁颧骨轻扫，做日系水光感。",img:"https://cdn.shopify.com/s/files/1/1969/5775/files/Cezanne-Pearl-Glow-Highlighter-With-Brush-2-4g-1-2025-08-14T03_57_22.966Z.png?v=1755159956"},
+  {cat:"makeup",tier:"value",brand:"キャンメイク Canmake",name:"棉花糖定妆蜜粉",price:"≈¥1,034",note:"控油持妆、柔焦毛孔。",img:"https://cdn.shopify.com/s/files/1/1969/5775/files/Canmake-Marshmallow-Finish-Powder-Foundation-SPF50-1-2024-09-23T23_26_11.316Z.jpg?v=1746155151"},
+  {cat:"makeup",tier:"value",brand:"セザンヌ Cezanne",name:"皮脂テカリ防止下地",price:"≈¥720",note:"只上 T 区，压油延长持妆。",img:"https://cdn.shopify.com/s/files/1/1969/5775/files/P-1-CEZ-UVM-BS-30-Cezanne_Make_Keep_Base_UV_30ml.jpg?v=1746159497"},
+  {cat:"makeup",tier:"lux",brand:"NARS",name:"Climax 睫毛膏",price:"约¥4,200",note:"浓密不结块，化妆师常青款。",img:"https://cdn.shopify.com/s/files/1/0283/0185/2747/files/global_images-607845070085-1.jpg?v=1774906646"},
+  {cat:"makeup",tier:"value",brand:"Maybelline",name:"Sky High 睫毛膏",price:"约¥2,100",note:"开架睫毛神物，纤长不晕。",img:"https://static.beautytocare.com/cdn-cgi/image/f=auto/media/catalog/product/m/a/maybelline-lash-sensational-sky-high-mascara-01-very-black-7-2ml.jpg"},
+  {cat:"makeup",tier:"lux",brand:"Charlotte Tilbury",name:"Pillow Talk 口红+唇线",price:"约¥5,700",note:"几乎是「自然裸唇」的代名词。",img:"https://cdn.shopify.com/s/files/1/0283/0185/2747/files/variant_images-size-PillowTalkFair-5056446634243-47.jpg?v=1769555487"},
+  {cat:"makeup",tier:"value",brand:"オペラ OPERA",name:"リップティント 唇釉",price:"≈¥1,650",note:"玫瑰豆沙渐层咬唇，自然血色。",img:"https://cdn.shopify.com/s/files/1/0346/3403/9341/files/Opera_Lip_Tint_N_05_01.jpg?v=1770940899"},
+  {cat:"makeup",tier:"value",brand:"ケイト KATE",name:"リップモンスター",price:"≈¥1,540",note:"保湿带色、持久，日常百搭。",img:"https://cdn.shopify.com/s/files/1/0346/3403/9341/files/Kate_Lip_Monster_01.jpg?v=1772334654"},
+
+  // —— 头发 ——
+  {cat:"hair",tier:"lux",brand:"Olaplex",name:"No.3 断键修护",price:"约¥4,900",note:"染烫/热损伤修护的全球标杆。",img:"https://cdn.shopify.com/s/files/1/0568/4484/5206/files/No33oz.jpg?v=1773272378"},
+  {cat:"hair",tier:"lux",brand:"K18",name:"修护发膜",price:"约¥12,200",note:"肽技术，免冲洗 4 分钟，步骤更少。",img:"https://cdn.shopify.com/s/files/1/0094/8384/5679/files/00_Mask.jpg?v=1726613673"},
+  {cat:"hair",tier:"lux",brand:"Kérastase",name:"洗护系列",price:"约¥7,300",note:"柔顺光泽、沙龙手感。",img:"https://shop.sass-salon.com/cdn/shop/files/102093.jpg?v=1687814298"},
+  {cat:"hair",tier:"lux",brand:"Oribe",name:"Gold Lust 发油",price:"约¥8,400",note:"玻璃光泽，高端造型+标志性香味。",img:"https://cdn.shopify.com/s/files/1/0738/6084/1787/products/1200Wx1200H-400270.jpg?v=1691604240"},
+  {cat:"hair",tier:"value",brand:"N. （エヌドット）",name:"ポリッシュオイル 发油",price:"≈¥1,000",note:"做日系发丝光泽+湿发垂感的关键，最划算。",img:"https://cdn.shopify.com/s/files/1/1969/5775/files/Napla-N--Polish-Oil-150ml-1-2024-08-19T04_05_40.097Z.jpg?v=1743424116"},
+  {cat:"hair",tier:"value",brand:"大島椿",name:"山茶油",price:"≈¥1,500",note:"自然光泽、抚平毛躁，老牌可靠。",img:"https://cdn.shopify.com/s/files/1/1969/5775/files/Oshima-Tsubaki-Pure-Natural-Japanese-Camellia-Oil-60ml-1-2024-08-07T08_10_55.548Z.jpg?v=1746161226"},
+  {cat:"hair",tier:"value",brand:"& honey",name:"光泽洗护",price:"≈¥1,500",note:"日系人气款，主打光泽不毛躁。",img:"https://cdn.shopify.com/s/files/1/0378/7590/8747/files/honeyDeepMoistShampoo.jpg?v=1745322000"},
+  {cat:"hair",tier:"value",brand:"YOLU",name:"夜间修护洗护",price:"≈¥1,500",note:"睡眠修护概念，柔顺好打理。",img:"https://cdn.shopify.com/s/files/1/1969/5775/files/P-1-YOLU-CNRSHA-475-Yolu_Calm_Night_Repair_Silicone_Free_Shampoo_for_Damaged_Hair_475ml.jpg?v=1746155217"},
+  {cat:"hair",tier:"lux",brand:"Dyson",name:"Airwrap 多功能造型器",price:"约¥97,200",note:"低热损伤、卷直一体。",img:"https://cdn.shopify.com/s/files/1/0291/4536/6588/files/566f149a4ca24390a7ed8a689a6812fc.webp?v=1781868922"},
+
+  // —— 身体 / 沐浴 ——
+  {cat:"body",tier:"lux",brand:"Aesop",name:"身体洁肤露",price:"约¥6,300",note:"clean luxury 标杆，洗完留香高级，最提清潔感。",img:"https://cdn.shopify.com/s/files/1/0283/0185/2747/files/variant_images-size-169floz-9319944038316-1.jpg?v=1772820544"},
+  {cat:"body",tier:"lux",brand:"Diptyque",name:"沐浴露",price:"约¥7,800",note:"气味高级，沐浴+身体乳成系列。",img:"https://cdn.shopify.com/s/files/1/1347/3383/files/33313-new-min.jpg?v=1772824801"},
+  {cat:"body",tier:"value",brand:"La Roche-Posay",name:"Lipikar 沐浴露",price:"约¥2,400",note:"皮肤科最推、含烟酰胺，敏感干皮脸身可用。",img:"https://cdn.shopify.com/s/files/1/0419/5447/6194/products/La-Roche-Posay-Baby-Lipikar-Syndet-AP_-Hair-_-Body-Wash1.jpg?v=1659354587"},
+  {cat:"body",tier:"value",brand:"Sol de Janeiro",name:"Brazilian Bum Bum 沐浴",price:"约¥4,100",note:"平价香氛，留香讨喜。",img:"https://cdn.shopify.com/s/files/1/2826/2250/files/Brazilian_Bum_Bum_Cream_Sol_de_Janeiro_0.jpg?v=1771446095"},
+  {cat:"body",tier:"value",brand:"Nécessaire",name:"身体精华",price:"约¥4,900",note:"含烟酰胺，护理身体肤质。",img:"https://cdn.shopify.com/s/files/1/0034/8812/0947/files/01_THE_BODY_SERUM_PDP.jpg?v=1762200032"},
+  {cat:"body",tier:"value",brand:"SABON",name:"盐磨砂",price:"约¥6,500",note:"身体去角质经典，让身体也透亮。",img:"https://cdn.shopify.com/s/files/1/0561/8984/5551/files/61302000011BodyScrubSmallP-L-V320gr_SabonJar_new.png?v=1747937761"},
+  {cat:"body",tier:"value",brand:"Curél",name:"神经酰胺身体乳",price:"≈¥1,200",note:"干燥身体肌救星，性价比高。",img:"https://cdn.shopify.com/s/files/1/1969/5775/files/P-1-KAO-CUR-BL-220-Kao_Curel_Moisture_Milk_Body_Lotion_220ml.jpg?v=1746159381"},
+  {cat:"body",tier:"lux",brand:"Aesop",name:"Resurrection 护手霜",price:"约¥4,700",note:"高级留香，手是除脸最常被看到的部位。",img:"https://cdn.shopify.com/s/files/1/0283/0185/2747/files/global_images-3614274581096-1.jpg?v=1769963290"},
+  {cat:"body",tier:"value",brand:"L'OCCITANE",name:"乳木果护手霜",price:"约¥1,900",note:"经典滋润，平价常备。",img:"https://cdn.shopify.com/s/files/1/0291/4536/6588/products/388cdf8061ce4f2687584c3e0bbb847d_4e37fd1e-e611-4a26-9454-91c0dec47f28.jpg?v=1655982841"},
+
+  // —— 香氛 ——
+  {cat:"scent",tier:"lux",brand:"Le Labo",name:"Santal 33",price:"约¥35,600",note:"高级小众标杆，木质麝香。",img:"https://lelabo.ips.photos/lelabo-java/images/skus/050PS33100__PRODUCT_01--IMG_1200--SANTAL33--79960236.jpg"},
+  {cat:"scent",tier:"lux",brand:"Byredo",name:"经典香水",price:"约¥32,400",note:"现代小众香的代表。",img:"https://cdn.shopify.com/s/files/1/0283/0185/2747/files/variant_images-size-17floz-7340032875300-1.jpg?v=1775754794"},
+  {cat:"scent",tier:"value",brand:"SHIRO",name:"サボン / 皂感香",price:"≈¥4,000",note:"皂感清新，最贴「日本女人感」的干净系。"},
+  {cat:"scent",tier:"lux",brand:"Jo Malone",name:"轻盈日常香",price:"约¥24,300",note:"清爽好搭，适合日常。",img:"https://cdn.shopify.com/s/files/1/0283/0185/2747/files/variant_images-size-30ml-690251000036-1_a818b3a2-b611-433e-8df5-c1897684b22a.jpg?v=1775744464"},
+  {cat:"scent",tier:"value",brand:"Maison Margiela",name:"Replica 系列",price:"约¥16,200",note:"场景香，干净不浓甜。",img:"https://cdn.shopify.com/s/files/1/0291/4536/6588/files/d62ea2502fb24e51bf3209be865e6221.jpg?v=1772463646"},
+
+  // —— 口腔 ——
+  {cat:"oral",tier:"value",brand:"Oral-B",name:"iO 电动牙刷",price:"约¥24,300",note:"3D 追踪、专业级洁净感，口碑最好。"},
+  {cat:"oral",tier:"value",brand:"AquaSonic",name:"Black Series 电动牙刷",price:"约¥6,500",note:"有 ADA 认证、性价比高的入门选择。"},
+  {cat:"oral",tier:"value",brand:"Crest",name:"3D White 美白牙贴",price:"约¥7,300",note:"居家美白公认有效款；想彻底白找诊所冷光。"},
+  {cat:"oral",tier:"value",brand:"Waterpik",name:"冲牙器",price:"约¥11,300",note:"清牙缝、护牙龈。"},
+
+  // —— 仪器 / 工具 ——
+  {cat:"tools",tier:"lux",brand:"Omnilux",name:"Contour Face LED 红光面罩",price:"约¥64,000",note:"皮肤科公认居家红光金标准，临床证据足。",img:"https://cdn.shopify.com/s/files/1/0482/6736/2466/files/Contour_Face_Cover_Image.jpg?v=1756958460"},
+  {cat:"tools",tier:"lux",brand:"Shark",name:"CryoGlow LED 面罩",price:"约¥56,700",note:"红光+蓝光+冷敷去眼袋，一机多用。"},
+  {cat:"tools",tier:"value",brand:"NuFACE",name:"微电流提拉仪",price:"约¥32,400",note:"即时轮廓提拉，经典款。",img:"https://cdn.shopify.com/s/files/1/0742/5785/files/silo_dtc_award_trinity_starter_2000x2000_31151d17-0fe0-4579-81bc-95a45152cde3.jpg?v=1778689751"},
+  {cat:"tools",tier:"lux",brand:"ZIIP",name:"Halo 微电流仪",price:"约¥64,600",note:"微电流+纳米电流，进阶玩家向。",img:"https://cdn.shopify.com/s/files/1/1768/8429/files/ZIIP-25-BAU-201-Ecom_Halo_Gels_03.jpg?v=1776065964"},
+  {cat:"tools",tier:"value",brand:"ReFa",name:"嫩肤滚轮",price:"≈¥7,000",note:"入门级面部循环，用得勤最重要。"},
+
+  // —— 内服（可选，证据参差）——
+  {cat:"inner",tier:"value",brand:"トランシーノ",name:"口服传明酸",price:"≈¥1,900",note:"日系美白内服，证据参差，当锦上添花。有基础病/备孕先问医生。",img:"https://cdn.shopify.com/s/files/1/1969/5775/files/P-1-TRA-WCCLEA-240-Transino_White_C_Clear_Whitening_Supplement_240_Tablets.jpg?v=1743422145"},
+  {cat:"inner",tier:"value",brand:"コラーゲン",name:"胶原蛋白饮",price:"因品牌而异",note:"日系 inner beauty 文化，效果因人而异。"},
+  {cat:"inner",tier:"value",brand:"Biotin",name:"生物素",price:"因品牌而异",note:"头发指甲常见补充，别过量。"},
+];
+
+/* ====== 渲染 ====== */
+let state = {cat:"all", tier:"all", q:"", unboughtOnly:false};
+
+/* ====== 「已买」状态：localStorage 持久化，禁用时降级为本次内存 ====== */
+const STORE_KEY = "beautyDir.bought.v1";
+const keyOf = (p)=> p.brand + "|" + p.name;   // key = brand+name
+
+let bought = (function loadBought(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return new Set(Array.isArray(arr) ? arr : []);
+  }catch(e){
+    return new Set();   // localStorage 被禁用 / 解析失败：仅本次内存
+  }
+})();
+
+function saveBought(){
+  try{
+    localStorage.setItem(STORE_KEY, JSON.stringify([...bought]));
+  }catch(e){ /* 被禁用时静默降级，不报错 */ }
+}
+const isBought = (p)=> bought.has(keyOf(p));
+
+function monogram(brand){
+  const s = brand.replace(/[^A-Za-z\u4e00-\u9fa5]/g,"");
+  const latin = brand.match(/[A-Za-z]/) ? brand.replace(/[^A-Za-z]/g,"").slice(0,1).toUpperCase()
+                                        : brand.slice(0,1);
+  return latin || (s.slice(0,1)) || "·";
+}
+
+function placeholderHTML(brand){
+  return `<span class="mono">${monogram(brand)}</span><span class="ph-tag">待配图</span>`;
+}
+// 图片加载失败时降级回磨砂占位图（全局，供 img 的 onerror 调用）
+function imgFail(img){
+  const thumb = img.closest(".thumb");
+  if(thumb) thumb.innerHTML = placeholderHTML(img.getAttribute("data-mono-brand")||"");
+}
+
+function cardHTML(p){
+  const t = TIERS[p.tier];
+  const thumb = p.img
+    ? `<div class="thumb"><img src="${p.img}" alt="${p.brand} ${p.name}" data-mono-brand="${p.brand}" onerror="imgFail(this)"></div>`
+    : `<div class="thumb">${placeholderHTML(p.brand)}</div>`;
+  const b = isBought(p);
+  return `<article class="card${b?' bought':''}" data-cat="${p.cat}" data-tier="${p.tier}" data-key="${keyOf(p)}" data-q="${(p.brand+' '+p.name).toLowerCase()}">
+    ${thumb}
+    <div class="body">
+      <span class="brand">${p.brand}</span>
+      <span class="name">${p.name}</span>
+      <p class="note">${p.note}</p>
+      <div class="meta">
+        <span class="price">${p.price}</span>
+        <span class="badge ${t.cls}">${t.zh}</span>
+      </div>
+      <button class="buy" type="button" aria-pressed="${b?'true':'false'}">${b?'✓ 已入手':'○ 标记已买'}</button>
+    </div>
+  </article>`;
+}
+
+function render(immediate){
+  const host = document.getElementById("sections");
+  host.innerHTML = "";
+  let total = 0;
+  CATS.forEach(c=>{
+    if(state.cat!=="all" && state.cat!==c.id) return;
+    const items = PRODUCTS.filter(p=>
+      p.cat===c.id &&
+      (state.tier==="all" || p.tier===state.tier) &&
+      (!state.unboughtOnly || !isBought(p)) &&
+      (state.q==="" || (p.brand+" "+p.name).toLowerCase().includes(state.q))
+    );
+    if(!items.length) return;
+    total += items.length;
+    const sec = document.createElement("section");
+    sec.className="group";
+    sec.id="g-"+c.id;
+    sec.innerHTML = `<div class="group-head">
+        <h2>${c.zh}</h2><span class="en">${c.en}</span><span class="ct">${items.length} 件</span>
+      </div>
+      <div class="grid">${items.map(cardHTML).join("")}</div>`;
+    host.appendChild(sec);
+  });
+  document.getElementById("empty").classList.toggle("show", total===0);
+  if(immediate){ document.querySelectorAll(".card").forEach(c=>c.classList.add("in")); }
+  else revealObserve();
+}
+
+/* 点击「标记已买 / 已入手」（事件委托，渲染后仍生效） */
+document.getElementById("sections").addEventListener("click",(e)=>{
+  const btn = e.target.closest(".buy");
+  if(!btn) return;
+  const card = btn.closest(".card");
+  const k = card.dataset.key;
+  const nowBought = !bought.has(k);
+  if(nowBought) bought.add(k); else bought.delete(k);
+  saveBought();
+  card.classList.toggle("bought", nowBought);
+  btn.setAttribute("aria-pressed", nowBought?"true":"false");
+  btn.textContent = nowBought ? "✓ 已入手" : "○ 标记已买";
+  // 「只看未买」模式下，刚标记已买的卡片需要从列表中隐去
+  if(state.unboughtOnly && nowBought){ render(true); }
+  updateProgress();
+});
+
+/* 滚动渐入 */
+let io;
+function revealObserve(){
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cards = document.querySelectorAll(".card");
+  if(reduce){ cards.forEach(c=>c.classList.add("in")); return; }
+  if(io) io.disconnect();
+  io = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{threshold:.08, rootMargin:"0px 0px -40px 0px"});
+  cards.forEach(c=>io.observe(c));
+}
+
+/* 控件 */
+function buildChips(){
+  const catBox = document.getElementById("catChips");
+  const mk=(label,val,group,active)=>{
+    const b=document.createElement("button");
+    b.className="chip"+(group==="tier"?" tier":"");
+    b.textContent=label; b.dataset.val=val; b.dataset.group=group;
+    b.setAttribute("aria-pressed", active?"true":"false");
+    b.addEventListener("click",()=>{
+      state[group]=val;
+      document.querySelectorAll(`.chip[data-group="${group}"]`).forEach(x=>x.setAttribute("aria-pressed","false"));
+      b.setAttribute("aria-pressed","true");
+      render();
+    });
+    return b;
+  };
+  catBox.appendChild(mk("全部","all","cat",true));
+  CATS.forEach(c=>catBox.appendChild(mk(c.zh,c.id,"cat",false)));
+
+  const tierBox = document.getElementById("tierChips");
+  tierBox.appendChild(mk("全部","all","tier",true));
+  Object.entries(TIERS).forEach(([k,v])=>tierBox.appendChild(mk(v.zh,k,"tier",false)));
+}
+
+document.getElementById("search").addEventListener("input",(e)=>{
+  state.q = e.target.value.trim().toLowerCase(); render();
+});
+
+/* stats */
+function stats(){
+  const el=document.getElementById("stats");
+  const core = PRODUCTS.filter(p=>p.tier==="core").length;
+  const data=[[PRODUCTS.length,"件精选产品"],[CATS.length,"个品类"],[core,"件必买地基"]];
+  el.innerHTML = data.map(d=>`<div class="stat"><div class="n">${d[0]}</div><div class="l">${d[1]}</div></div>`).join("")
+    + `<div class="stat" id="progStat"></div>`;
+  updateProgress();
+}
+
+/* 已入手进度，随勾选实时更新 */
+function updateProgress(){
+  const el=document.getElementById("progStat");
+  if(!el) return;
+  const have = PRODUCTS.reduce((n,p)=> n + (isBought(p)?1:0), 0);
+  el.innerHTML = `<div class="n">${have} / ${PRODUCTS.length}</div><div class="l">已入手 / 共</div>`;
+}
+
+/* 「只看未买」开关 */
+const ubt = document.getElementById("unboughtToggle");
+ubt.addEventListener("click",()=>{
+  state.unboughtOnly = !state.unboughtOnly;
+  ubt.setAttribute("aria-pressed", state.unboughtOnly?"true":"false");
+  render();
+});
+
+buildChips(); stats(); render();
+</script>
+</body>
+</html>
