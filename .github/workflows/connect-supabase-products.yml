@@ -1,0 +1,106 @@
+name: Connect Supabase products
+
+on:
+  push:
+    paths:
+      - '.github/workflows/connect-supabase-products.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  connect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch page and generate Supabase seed SQL
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'index.html';
+          let html = fs.readFileSync(path, 'utf8');
+
+          const baseMatch = html.match(/const PRODUCTS = \[([\s\S]*?)\n\];/);
+          const addMatch = html.match(/PRODUCTS\.push\(([\s\S]*?)\n  \);/);
+          if (!baseMatch || !addMatch) throw new Error('Could not find product data blocks');
+
+          const baseProducts = Function(`return [${baseMatch[1]}\n];`)();
+          const addedProducts = Function(`
+            const ADDED_ON = "2026-06-30";
+            const added = (name) => `${name}（${ADDED_ON}新增）`;
+            return [${addMatch[1]}];
+          `)();
+          const products = [...baseProducts, ...addedProducts].map((p, i) => ({
+            cat: p.cat || '',
+            sub: p.sub || null,
+            tier: p.tier || 'value',
+            brand: p.brand || '',
+            name: p.name || '',
+            price: p.price || '',
+            note: p.note || '',
+            img: p.img || null,
+            sort_order: i + 1,
+            active: true,
+            added_date: /2026-06-30新增/.test(p.name || '') ? '2026-06-30' : null,
+          }));
+
+          const esc = (v) => v == null ? 'null' : `'${String(v).replace(/'/g, "''")}'`;
+          const rows = products.map(p => `(${esc(p.cat)},${esc(p.sub)},${esc(p.tier)},${esc(p.brand)},${esc(p.name)},${esc(p.price)},${esc(p.note)},${esc(p.img)},${p.sort_order},${p.active ? 'true' : 'false'},${esc(p.added_date)})`).join(',\n');
+          const sql = `truncate table public.beauty_products restart identity;\n\ninsert into public.beauty_products (cat, sub, tier, brand, name, price, note, img, sort_order, active, added_date) values\n${rows};\n`;
+          fs.writeFileSync('supabase_seed_beauty_products.sql', sql);
+
+          const config = `
+          const SUPABASE_URL = "https://jmfuujyeodhjhgxezqpv.supabase.co";
+          const SUPABASE_KEY = "sb_publishable_zDXnDnWE665dD9kMmSqxOQ_U0Y_V5ib";
+          const SUPABASE_PRODUCTS_ENDPOINT = SUPABASE_URL + "/rest/v1/beauty_products?active=eq.true&select=cat,sub,tier,brand,name,price,note,img&order=sort_order.asc,id.asc";
+          `;
+          if (!html.includes('const SUPABASE_PRODUCTS_ENDPOINT')) {
+            html = html.replace('/* ====== 产品数据：加 img 字段即可显示真实图片 ====== */', `${config}\n/* ====== 产品数据：加 img 字段即可显示真实图片 ====== */`);
+          }
+
+          const loader = `
+          async function loadProductsFromSupabase(){
+            try{
+              const res = await fetch(SUPABASE_PRODUCTS_ENDPOINT, {
+                headers: {
+                  apikey: SUPABASE_KEY,
+                  Authorization: "Bearer " + SUPABASE_KEY,
+                },
+              });
+              if(!res.ok) throw new Error("Supabase products request failed: " + res.status);
+              const rows = await res.json();
+              if(!Array.isArray(rows) || !rows.length) return false;
+              PRODUCTS.splice(0, PRODUCTS.length, ...rows.map((p)=>({
+                cat:p.cat, sub:p.sub || "", tier:p.tier, brand:p.brand, name:p.name,
+                price:p.price || "", note:p.note || "", img:p.img || "",
+              })));
+              return true;
+            }catch(e){
+              console.warn("Using bundled beauty products fallback", e);
+              return false;
+            }
+          }
+
+          async function startBeautyPage(){
+            if (typeof applyBeautyRefresh === "function") { try { applyBeautyRefresh(); } catch(e) { console.error(e); } }
+            await loadProductsFromSupabase();
+            buildChips(); stats(); render();
+          }
+          `;
+          if (!html.includes('async function loadProductsFromSupabase')) {
+            html = html.replace('if (typeof applyBeautyRefresh === "function") { try { applyBeautyRefresh(); } catch(e) { console.error(e); } } buildChips(); stats(); render();', `${loader}\nstartBeautyPage();`);
+          } else {
+            html = html.replace('if (typeof applyBeautyRefresh === "function") { try { applyBeautyRefresh(); } catch(e) { console.error(e); } } buildChips(); stats(); render();', 'startBeautyPage();');
+          }
+
+          fs.writeFileSync(path, html);
+          console.log(`Prepared ${products.length} products for Supabase`);
+          NODE
+      - name: Commit generated changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html supabase_seed_beauty_products.sql
+          git commit -m "Load beauty products from Supabase API" || exit 0
+          git push
