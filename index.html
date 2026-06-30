@@ -440,7 +440,11 @@ let state = {cat:"all", tier:"all", q:"", unboughtOnly:false};
 
 /* ====== 「已买」状态：localStorage 持久化，禁用时降级为本次内存 ====== */
 const STORE_KEY = "beautyDir.bought.v1";
+const SUPABASE_URL = "https://jmfuujyeodhjhgxezqpv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_zDXnDnWE665dD9kMmSqxOQ_U0Y_V5ib";
+const SUPABASE_BOUGHT_ENDPOINT = SUPABASE_URL + "/rest/v1/beauty_bought_state?id=eq.default";
 const keyOf = (p)=> p.brand + "|" + p.name;   // key = brand+name
+let saveBoughtTimer;
 
 let bought = (function loadBought(){
   try{
@@ -453,9 +457,61 @@ let bought = (function loadBought(){
 })();
 
 function saveBought(){
+  const items = [...bought];
   try{
-    localStorage.setItem(STORE_KEY, JSON.stringify([...bought]));
+    localStorage.setItem(STORE_KEY, JSON.stringify(items));
   }catch(e){ /* 被禁用时静默降级，不报错 */ }
+  clearTimeout(saveBoughtTimer);
+  saveBoughtTimer = setTimeout(()=>saveBoughtToSupabase(items), 250);
+}
+
+async function loadBoughtFromSupabase(){
+  try{
+    const res = await fetch(SUPABASE_BOUGHT_ENDPOINT + "&select=items", {
+      headers:{
+        apikey: SUPABASE_KEY,
+        Authorization: "Bearer " + SUPABASE_KEY,
+      },
+      cache:"no-store",
+    });
+    if(!res.ok) throw new Error("Supabase read failed");
+    const row = (await res.json())[0];
+    if(row && Array.isArray(row.items)){
+      bought = new Set(row.items);
+      try{ localStorage.setItem(STORE_KEY, JSON.stringify(row.items)); }catch(e){}
+    }
+  }catch(e){
+    console.warn("读取云端已入手状态失败，继续使用本机记录。", e);
+  }
+}
+
+async function saveBoughtToSupabase(items){
+  try{
+    const res = await fetch(SUPABASE_BOUGHT_ENDPOINT, {
+      method:"PATCH",
+      headers:{
+        apikey: SUPABASE_KEY,
+        Authorization: "Bearer " + SUPABASE_KEY,
+        "Content-Type":"application/json",
+        Prefer:"return=minimal",
+      },
+      body: JSON.stringify({items, updated_at: new Date().toISOString()}),
+    });
+    if(res.status === 404 || res.status === 406){
+      await fetch(SUPABASE_URL + "/rest/v1/beauty_bought_state", {
+        method:"POST",
+        headers:{
+          apikey: SUPABASE_KEY,
+          Authorization: "Bearer " + SUPABASE_KEY,
+          "Content-Type":"application/json",
+          Prefer:"resolution=merge-duplicates,return=minimal",
+        },
+        body: JSON.stringify({id:"default", items, updated_at: new Date().toISOString()}),
+      });
+    }
+  }catch(e){
+    console.warn("保存云端已入手状态失败，已保留本机记录。", e);
+  }
 }
 const isBought = (p)=> bought.has(keyOf(p));
 
@@ -621,7 +677,13 @@ ubt.addEventListener("click",()=>{
   render();
 });
 
-buildChips(); stats(); render();
+async function startBeautyPage(){
+  await loadBoughtFromSupabase();
+  buildChips();
+  stats();
+  render();
+}
+startBeautyPage();
 </script>
 </body>
 </html>
