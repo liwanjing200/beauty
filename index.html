@@ -441,7 +441,7 @@ let state = {cat:"all", tier:"all", q:"", unboughtOnly:false};
 /* ====== 「已买」状态：localStorage 持久化，禁用时降级为本次内存 ====== */
 const STORE_KEY = "beautyDir.bought.v1";
 const SUPABASE_URL = "https://jmfuujyeodhjhgxezqpv.supabase.co";
-const SUPABASE_KEY = "sb_publishable_zDXnDnWE665dD9kMmSqxOQ_U0Y_V5ib";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImptZnV1anllb2RoamhneGV6cXB2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5Mjc4NTksImV4cCI6MjA5NzUwMzg1OX0.4BtqkPjxJ10TLwQ3yL7gjMgAFWEBBMqzoL2N2WI0Zw4";
 const SUPABASE_BOUGHT_ENDPOINT = SUPABASE_URL + "/rest/v1/beauty_bought_state?id=eq.default";
 const keyOf = (p)=> p.brand + "|" + p.name;   // key = brand+name
 let saveBoughtTimer;
