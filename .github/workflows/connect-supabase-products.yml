@@ -25,12 +25,8 @@ jobs:
           const addMatch = html.match(/PRODUCTS\.push\(([\s\S]*?)\n  \);/);
           if (!baseMatch || !addMatch) throw new Error('Could not find product data blocks');
 
-          const baseProducts = Function(`return [${baseMatch[1]}\n];`)();
-          const addedProducts = Function(`
-            const ADDED_ON = "2026-06-30";
-            const added = (name) => `${name}（${ADDED_ON}新增）`;
-            return [${addMatch[1]}];
-          `)();
+          const baseProducts = Function('return [' + baseMatch[1] + '\n];')();
+          const addedProducts = Function('const ADDED_ON = "2026-06-30"; const added = (name) => name + "（" + ADDED_ON + "新增）"; return [' + addMatch[1] + '];')();
           const products = [...baseProducts, ...addedProducts].map((p, i) => ({
             cat: p.cat || '',
             sub: p.sub || null,
