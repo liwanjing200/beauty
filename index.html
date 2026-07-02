@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>透明感宇宙 · Beauty Solar System</title>
+<title>透明感清单 · 变美产品全集</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@200;300;400;500;700&display=swap" rel="stylesheet" />
@@ -50,189 +50,26 @@
 
   .wrap{max-width:1120px;margin:0 auto;padding:0 22px;}
 
-  /* ---------- Solar hero ---------- */
-  header.hero{
-    min-height:100vh;padding:28px 34px 24px;color:#FBF8F1;overflow:hidden;position:relative;
-    background:
-      linear-gradient(180deg,rgba(5,10,32,.28),rgba(35,31,78,.22)),
-      url("https://raw.githubusercontent.com/Seleneyuening/beauty/main/assets/beauty-universe-hero.jpg") center top / cover no-repeat,
-      linear-gradient(180deg,#070D24 0%,#121B3C 46%,#5D5A93 100%);
-  }
-  header.hero::before{
-    content:"";position:absolute;inset:0;pointer-events:none;opacity:.45;
-    background-image:
-      radial-gradient(circle,#fff 0 1px,transparent 1.6px),
-      radial-gradient(ellipse at 50% 55%, transparent 0 24%, rgba(249,205,151,.45) 24.2% 24.45%, transparent 24.7% 31%, rgba(249,205,151,.32) 31.2% 31.45%, transparent 31.8% 39%, rgba(249,205,151,.24) 39.2% 39.45%, transparent 39.8%);
-    background-size:92px 92px,100% 100%;
-  }
-  header.hero::after{
-    content:"";position:absolute;left:0;right:0;bottom:0;height:34%;
-    background:linear-gradient(180deg,transparent,rgba(245,226,235,.22));
-    pointer-events:none;
-  }
-  .hero-top,.cosmic-stage,.glass-dock,.hero-foot{position:relative;z-index:1;}
-  .hero-top{display:flex;align-items:center;justify-content:space-between;gap:24px;}
-  .brand-mark{font-family:"Noto Serif SC",serif;font-size:30px;letter-spacing:.06em;line-height:.92;}
-  .brand-mark span{display:block;font-family:"Noto Sans SC",sans-serif;font-size:11px;letter-spacing:.32em;margin-top:8px;}
-  .top-nav{display:flex;align-items:center;gap:34px;font-size:15px;}
-  .top-nav button,.hero-actions button{border:0;background:transparent;color:#fff;font:inherit;cursor:pointer;padding:8px 0;}
-  .top-nav button[aria-pressed="true"]{border-bottom:1px solid #F3C989;color:#FFF2D6;}
-  .hero-actions{display:flex;align-items:center;gap:14px;}
-  .search-dot{font-size:30px;line-height:1;}
-  .list-pill{border:1px solid rgba(255,255,255,.28)!important;border-radius:999px!important;padding:9px 18px!important;background:rgba(255,255,255,.06)!important;}
+  /* ---------- Hero ---------- */
+  header.hero{padding:72px 0 34px;}
   .eyebrow{
     font-size:11px;letter-spacing:.42em;text-transform:uppercase;
-    color:#D8D4F0;font-weight:500;margin:0 0 18px;
+    color:var(--water);font-weight:500;margin:0 0 18px;
   }
   h1.title{
     font-family:"Noto Serif SC",serif;font-weight:600;
     font-size:clamp(38px,7vw,68px);line-height:1.08;letter-spacing:.01em;
     margin:0 0 22px;
   }
-  h1.title .thin{font-weight:400;color:#F5DCE8;}
+  h1.title .thin{font-weight:400;color:var(--ink-soft);}
   .lede{
-    max-width:640px;font-size:clamp(15px,2.2vw,17px);color:#DCD8E7;
+    max-width:640px;font-size:clamp(15px,2.2vw,17px);color:var(--ink-soft);
     margin:0 0 30px;font-weight:300;
   }
-  .lede b{font-weight:500;color:#fff;}
-  .cosmic-stage{height:min(690px,calc(100vh - 250px));min-height:520px;margin-top:10px;}
-  .solar-system{position:absolute;inset:0;}
-  .sun{
-    position:absolute;left:50%;top:48%;width:310px;height:310px;transform:translate(-50%,-50%);
-    border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;
-    font-family:"Noto Serif SC",serif;font-size:36px;line-height:1.25;color:#5F4734;
-    background:
-      radial-gradient(circle at 38% 30%,#fff8e8 0,#FFE5B7 33%,#F5B77F 64%,#E49C68 100%);
-    box-shadow:0 0 54px rgba(255,225,166,.72),0 0 160px rgba(238,168,154,.55);
-    border:0;cursor:pointer;
-  }
-  .sun b{font-weight:500;}
-  .sun span{display:block;font-family:"Noto Sans SC",sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#7B5E4B;margin-top:8px;}
-  .orbit{
-    position:absolute;left:50%;top:48%;border:1px solid rgba(247,197,139,.24);border-radius:50%;
-    transform:translate(-50%,-50%) rotate(-10deg);box-shadow:inset 0 0 30px rgba(255,255,255,.03);
-  }
-  .orbit.core{width:520px;height:230px;}
-  .orbit.value{width:760px;height:350px;}
-  .orbit.lux{width:1040px;height:500px;}
-  .planet{
-    --x:50%;--y:50%;--size:126px;--glow:#F4C8D8;
-    position:absolute;left:var(--x);top:var(--y);width:250px;min-height:150px;
-    transform:translate(-50%,-50%);border:0;cursor:pointer;color:#fff;background:transparent;text-align:left;
-    transition:transform .25s,box-shadow .25s;z-index:18;
-  }
-  .planet:hover,.planet:focus-visible{transform:translate(-50%,-50%) scale(1.03);outline:none;}
-  .planet[aria-pressed="true"] .planet-orb{
-    transform:scale(1.04);
-    box-shadow:0 0 46px color-mix(in srgb,var(--glow),transparent 8%),0 0 88px rgba(255,231,214,.22),inset -18px -20px 38px rgba(24,19,66,.24);
-  }
-  .planet-orb{
-    position:absolute;left:0;top:0;width:var(--size);height:var(--size);border-radius:50%;
-    background:
-      radial-gradient(circle at 33% 24%,#fff 0 7%,rgba(255,255,255,.82) 8%,var(--glow) 39%,rgba(83,78,142,.72) 100%);
-    box-shadow:0 0 34px color-mix(in srgb,var(--glow),transparent 20%),inset -18px -20px 38px rgba(24,19,66,.28);
-    animation:float 8s ease-in-out infinite;
-  }
-  .planet .ring{
-    position:absolute;inset:14px -10px;border:1px solid rgba(255,255,255,.26);border-radius:50%;
-    transform:rotate(-18deg) scaleX(1.42);
-  }
-  .planet-copy{position:absolute;left:140px;top:28px;width:160px;text-shadow:0 2px 14px rgba(0,0,0,.45);}
-  .planet-copy b{display:block;font-family:"Noto Serif SC",serif;font-size:25px;font-weight:600;line-height:1.05;}
-  .planet-copy em{display:block;font-family:"Noto Serif SC",serif;font-style:normal;font-size:13px;letter-spacing:.12em;margin-top:4px;text-transform:uppercase;}
-  .planet-copy span{display:block;font-size:13px;line-height:1.7;color:#E8E2EF;margin-top:8px;}
-  .planet-copy i{
-    display:grid;place-items:center;width:34px;height:34px;border-radius:50%;margin-top:10px;font-style:normal;color:#5B506F;
-    background:rgba(255,255,255,.82);box-shadow:0 0 18px rgba(255,255,255,.5);
-  }
-  .planet[data-cat="skincare"]{--x:21%;--y:17%;--glow:#BEB2F3;--size:134px;animation-delay:-1s;}
-  .planet[data-cat="makeup"]{--x:68%;--y:18%;--glow:#EEB2C4;--size:128px;animation-delay:-2s;}
-  .planet[data-cat="hair"]{--x:86%;--y:43%;--glow:#E58786;--size:116px;animation-delay:-3s;}
-  .planet[data-cat="body"]{--x:13%;--y:48%;--glow:#9DBDE8;--size:118px;animation-delay:-4s;}
-  .planet[data-cat="scent"]{--x:27%;--y:75%;--glow:#D9A7EA;--size:122px;animation-delay:-5s;}
-  .planet[data-cat="oral"]{--x:48%;--y:80%;--glow:#AFC5EA;--size:92px;animation-delay:-6s;}
-  .planet[data-cat="tools"]{--x:69%;--y:76%;--glow:#C7D7F5;--size:128px;animation-delay:-7s;}
-  .planet[data-cat="hair"] .planet-copy,.planet[data-cat="tools"] .planet-copy{left:132px;}
-  .planet[data-cat="body"] .planet-copy,.planet[data-cat="scent"] .planet-copy{left:132px;}
-  .planet[data-cat="skincare"] .planet-orb{animation-delay:-1s;}
-  .planet[data-cat="makeup"] .planet-orb{animation-delay:-2s;}
-  .planet[data-cat="hair"] .planet-orb{animation-delay:-3s;}
-  .planet[data-cat="body"] .planet-orb{animation-delay:-4s;}
-  .planet[data-cat="scent"] .planet-orb{animation-delay:-5s;}
-  .planet[data-cat="oral"] .planet-orb{animation-delay:-6s;}
-  .planet[data-cat="tools"] .planet-orb{animation-delay:-7s;}
-  .hero-quote{position:absolute;right:6px;bottom:52px;width:245px;margin:0;color:#F2EDF7;font-family:"Noto Serif SC",serif;font-size:16px;line-height:1.8;text-shadow:0 2px 12px rgba(0,0,0,.38);}
-  .hero-quote::before{content:"“";display:block;font-size:42px;line-height:.6;}
-  .hero-quote cite{display:block;margin-top:12px;text-align:right;font-style:italic;}
-  .glass-dock{
-    display:grid;grid-template-columns:1.15fr .85fr .85fr 1.15fr;overflow:hidden;
-    border:1px solid rgba(255,255,255,.34);border-radius:10px;background:rgba(255,248,253,.72);
-    color:#423B5F;box-shadow:0 20px 60px rgba(30,25,68,.24);backdrop-filter:blur(18px);
-  }
-  .dock-cell{padding:22px 26px;border-right:1px solid rgba(74,66,110,.22);min-height:138px;}
-  .dock-cell:last-child{border-right:0;}
-  .dock-title{font-size:14px;color:#665D83;margin-bottom:12px;}
-  .daily-inspo{display:flex;gap:20px;align-items:center;}
-  .daily-inspo img{width:112px;height:76px;object-fit:cover;border-radius:6px;background:#E8DADE;}
-  .daily-inspo p{margin:0;font-family:"Noto Serif SC",serif;font-size:14px;line-height:1.8;}
-  .progress-mini{display:flex;align-items:center;gap:22px;}
-  .progress-ring{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#737DB4 calc(var(--p)*1%),rgba(115,125,180,.18) 0);}
-  .progress-ring span{display:grid;place-items:center;width:61px;height:61px;border-radius:50%;background:#F6EEF4;font-family:"Noto Serif SC",serif;font-size:21px;}
-  .progress-mini dl{display:grid;grid-template-columns:auto auto;gap:7px 22px;margin:0;font-size:13px;}
-  .progress-mini dd{margin:0;text-align:right;}
-  .keyword-pills{display:flex;flex-wrap:wrap;gap:10px;}
-  .keyword-pills span{border:1px solid rgba(77,69,112,.18);border-radius:999px;padding:7px 17px;background:rgba(255,255,255,.42);font-size:13px;}
-  .recent-row{display:flex;gap:12px;}
-  .recent-row img{width:70px;height:70px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.5);padding:6px;}
-  .hero-foot{display:flex;justify-content:space-between;margin:18px 22px 0;color:#E8E2EF;font-size:13px;}
-  .hero-foot span{margin-right:28px;}
-  .product-orbit{
-    position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .28s ease;z-index:24;
-  }
-  .product-orbit{display:none!important;}
-  .product-orbit.show{opacity:1;pointer-events:none;}
-  .orbit-track{
-    position:absolute;left:var(--track-x);top:var(--track-y);width:var(--track-w);height:var(--track-h);
-    border:1px solid rgba(255,221,190,.34);border-radius:50%;transform:translate(-50%,-50%) rotate(var(--track-rot,-8deg));
-    box-shadow:0 0 22px rgba(255,218,184,.16);pointer-events:none;
-  }
-  .satellite{
-    position:absolute;left:var(--sat-x);top:var(--sat-y);display:grid;grid-template-columns:30px 1fr;align-items:center;gap:8px;
-    width:150px;min-height:48px;padding:7px 10px;border:1px solid rgba(255,255,255,.18);border-radius:999px;
-    background:rgba(25,24,70,.46);color:#FFF9FC;text-align:left;box-shadow:0 12px 28px rgba(6,8,34,.24),inset 0 0 0 1px rgba(255,255,255,.04);
-    backdrop-filter:blur(13px);cursor:pointer;pointer-events:auto;transform:translate(-50%,-50%);transition:transform .22s ease,border-color .22s ease;
-  }
-  .satellite:hover,.satellite.active{border-color:rgba(255,224,194,.48);transform:translate(-50%,-50%) scale(1.03);}
-  .satellite::before{
-    content:"";position:absolute;left:50%;top:50%;width:var(--ray-l,42px);height:1px;
-    background:linear-gradient(90deg,rgba(255,230,206,.75),rgba(255,255,255,0));box-shadow:0 0 10px rgba(255,225,198,.5);
-    transform:rotate(var(--ray-a,0deg));transform-origin:left center;pointer-events:none;
-  }
-  .satellite img{width:30px;height:30px;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(8,7,28,.34));}
-  .sat-label{min-width:0;}
-  .sat-label b{display:block;font-family:"Noto Serif SC",serif;font-size:12px;line-height:1.15;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .sat-label span{display:inline-block;margin-top:4px;font-size:9px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.13);color:#FFE5C9;}
-  .sat-detail{
-    position:absolute;left:var(--detail-x);top:var(--detail-y);width:260px;padding:15px;border:1px solid rgba(255,255,255,.2);border-radius:22px;
-    background:rgba(21,22,68,.72);color:#FFF9FC;box-shadow:0 18px 46px rgba(6,8,34,.34);backdrop-filter:blur(18px);
-    pointer-events:auto;transform:translate(-50%,-50%);
-  }
-  .sat-detail-head{display:grid;grid-template-columns:76px 1fr;gap:14px;align-items:center;}
-  .sat-detail img{width:76px;height:92px;object-fit:contain;filter:drop-shadow(0 10px 16px rgba(8,7,28,.42));}
-  .sat-detail h3{margin:0;font-family:"Noto Serif SC",serif;font-size:18px;line-height:1.25;font-weight:500;}
-  .sat-detail em{display:block;margin-top:5px;font-style:normal;font-size:11px;color:rgba(249,242,255,.72);}
-  .sat-detail p{margin:12px 0 0;font-size:12px;line-height:1.65;color:rgba(249,242,255,.78);}
-  .sat-actions{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;}
-  .sat-actions button{
-    border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.08);
-    color:#FFF9FC;font:inherit;font-size:11px;padding:6px 9px;cursor:pointer;
-  }
-  .sat-actions button[aria-pressed="true"]{background:rgba(255,225,196,.22);border-color:rgba(255,225,196,.5);}
-  .sat-fallback{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.14);font-family:"Noto Serif SC",serif;color:#fff;}
-  @keyframes float{0%,100%{margin-top:0}50%{margin-top:-10px}}
-  .stats{display:flex;gap:30px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.18);padding-top:18px;}
+  .lede b{font-weight:500;color:var(--ink);}
+  .stats{display:flex;gap:30px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px;}
   .stat .n{font-family:"Noto Serif SC",serif;font-size:30px;font-weight:600;line-height:1;}
-  .stat .l{font-size:12px;color:#DCD8E7;letter-spacing:.06em;margin-top:6px;}
+  .stat .l{font-size:12px;color:var(--ink-soft);letter-spacing:.06em;margin-top:6px;}
 
   /* ---------- Controls ---------- */
   .controls{
@@ -347,47 +184,7 @@
   }
 
   @media (max-width:600px){
-    header.hero{min-height:auto;padding:24px 18px 24px;}
-    .hero-top{display:block;}
-    .brand-mark{font-size:27px;margin-bottom:16px;}
-    .top-nav{gap:18px;overflow-x:auto;padding-bottom:8px;margin:0 -2px;font-size:14px;}
-    .hero-actions{position:absolute;right:18px;top:26px;}
-    .search-dot{display:none;}
-    .list-pill{padding:7px 13px!important;font-size:13px!important;}
-    .cosmic-stage{height:auto;min-height:0;margin-top:22px;}
-    .solar-system{position:relative;z-index:1000;min-height:0;display:flex;gap:13px;overflow-x:auto;padding:182px 4px 24px;margin:0 -4px;scroll-snap-type:x mandatory;}
-    .sun{display:flex;width:154px;height:154px;top:78px;left:50%;font-size:21px;}
-    .sun span{font-size:10px;letter-spacing:.12em;}
-    .orbit,.hero-quote{display:none;}
-    .planet{
-      position:relative;left:auto!important;top:auto!important;transform:none!important;flex:0 0 132px;height:132px;
-      border-radius:22px;scroll-snap-align:start;background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.08));
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 16px 34px rgba(0,0,0,.18);animation:none;
-    }
-    .planet-orb{left:36px;top:18px;width:62px;height:62px;animation:none;}
-    .planet .ring{inset:8px -5px;}
-    .planet-copy{left:0;top:88px;width:100%;text-align:center;}
-    .planet-copy b{font-size:14px;}
-    .planet-copy em,.planet-copy span,.planet-copy i{display:none;}
-    .glass-dock{display:block;border-radius:12px;margin-top:0;}
-    .product-orbit{
-      position:fixed;left:0;right:0;bottom:0;top:auto;width:auto;max-height:62vh;overflow:auto;
-      transform:translateY(100%);padding:18px 18px 24px;background:rgba(15,18,58,.9);
-      border-radius:24px 24px 0 0;border:1px solid rgba(255,255,255,.16);box-shadow:0 -18px 50px rgba(6,7,25,.36);
-      backdrop-filter:blur(18px);opacity:1;z-index:999;
-    }
-    .product-orbit.show{transform:translateY(0);pointer-events:auto;}
-    body.orbit-open .glass-dock,
-    body.orbit-open .controls{display:none;}
-    .product-orbit::before{display:none;}
-    .orbit-track{display:none;}
-    .satellite{position:relative;left:auto!important;top:auto!important;transform:none!important;width:100%;margin-bottom:10px;}
-    .satellite::before{display:none;}
-    .sat-detail{position:relative;left:auto!important;top:auto!important;transform:none;width:100%;margin-top:12px;}
-    .dock-cell{border-right:0;border-bottom:1px solid rgba(74,66,110,.18);min-height:0;padding:18px;}
-    .dock-cell:last-child{border-bottom:0;}
-    .daily-inspo img{width:88px;height:68px;}
-    .hero-foot{display:none;}
+    header.hero{padding:54px 0 26px;}
     .grid{grid-template-columns:1fr 1fr;gap:11px;}
     .thumb .mono{width:50px;height:50px;font-size:26px;}
     .name{font-size:14px;}
@@ -400,68 +197,17 @@
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
     .card{opacity:1;transform:none;transition:none;}
-    .planet,.planet-orb{animation:none;}
   }
 </style>
 </head>
 <body>
 
 <header class="hero">
-  <div class="hero-top">
-    <div class="brand-mark">SNOWQIN<span>BEAUTY UNIVERSE</span></div>
-    <nav class="top-nav" aria-label="主导航">
-      <button type="button" data-cat="all" aria-pressed="true">首页</button>
-      <button type="button" data-cat="skincare">护肤</button>
-      <button type="button" data-cat="makeup">彩妆</button>
-      <button type="button" data-cat="hair">头发</button>
-      <button type="button" data-cat="body">身体</button>
-      <button type="button" data-cat="scent">香氛</button>
-      <button type="button" data-cat="oral">口腔</button>
-      <button type="button" data-cat="tools">美容仪器</button>
-    </nav>
-    <div class="hero-actions">
-      <button class="search-dot" type="button" aria-label="搜索">⌕</button>
-      <button class="list-pill" type="button" id="heroListBtn">我的清单 ♡</button>
-    </div>
-  </div>
-  <div class="cosmic-stage">
-    <div class="solar-system" id="solarNav" aria-label="分类星球导航">
-      <div class="orbit core"></div>
-      <div class="orbit value"></div>
-      <div class="orbit lux"></div>
-      <button class="sun" type="button" id="nebulaToggle" aria-label="收起浮现产品"><div><b>透明感清单</b><span>Your Beauty Universe</span></div></button>
-      <div class="product-orbit" id="productOrbit" aria-live="polite"></div>
-      <blockquote class="hero-quote">变美不是一蹴而就，而是星球运转般的长期主义。<cite>Snow Qin</cite></blockquote>
-    </div>
-  </div>
-  <div class="glass-dock" aria-label="清单概览">
-    <div class="dock-cell daily-inspo">
-      <img src="https://murasakicosmetics.com/cdn/shop/products/Anessa-Sunscreen-Milk-Spf50.jpg?v=1655670181" alt="">
-      <div><div class="dock-title">今日灵感</div><p>皮肤的透明感，来自于稳定的日常积累。</p></div>
-    </div>
-    <div class="dock-cell">
-      <div class="dock-title">我的清单进度</div>
-      <div class="progress-mini">
-        <div class="progress-ring" id="heroProgress" style="--p:0"><span>0%</span></div>
-        <dl><dt>已买</dt><dd id="doneCount">0</dd><dt>想买</dt><dd id="wishCount">0</dd><dt>待定</dt><dd>12</dd></dl>
-      </div>
-    </div>
-    <div class="dock-cell">
-      <div class="dock-title">高频关键词</div>
-      <div class="keyword-pills"><span>保湿</span><span>美白</span><span>修护</span><span>防晒</span><span>抗初老</span><span>维稳</span></div>
-    </div>
-    <div class="dock-cell">
-      <div class="dock-title">最近查看</div>
-      <div class="recent-row">
-        <img src="https://murasakicosmetics.com/cdn/shop/products/Anessa-Sunscreen-Milk-Spf50.jpg?v=1655670181" alt="">
-        <img src="https://cdn.shopify.com/s/files/1/0419/5447/6194/files/CEF-1.png?v=1773134867" alt="">
-        <img src="https://cdn.shopify.com/s/files/1/0283/0185/2747/files/variant_images-size-PillowTalkFair-5056446634243-47.jpg?v=1769555487" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="hero-foot">
-    <div><span>♡ 我的收藏</span><span>✓ 只看未买</span><span>☆ 优先级排序</span></div>
-    <div>让变美成为一种生活方式</div>
+  <div class="wrap">
+    <p class="eyebrow">A Curated Beauty Directory</p>
+    <h1 class="title">透明感清单<br><span class="thin">变美产品全集</span></h1>
+    <p class="lede">为「日本女人感」整理的一套完整产品——护肤、彩妆、头发、身体、香氛、口腔到仪器，按<b>品类</b>和<b>优先级</b>排好。真正的关键从来不是买更多，而是把<b>先买的这几样用满三个月</b>。</p>
+    <div class="stats" id="stats"></div>
   </div>
 </header>
 
@@ -507,20 +253,10 @@ const CATS = [
   {id:"tools",    zh:"仪器 / 工具", en:"Devices"},
   {id:"inner",    zh:"内服", en:"Inner Beauty"},
 ];
-const PLANETS = ["skincare","makeup","hair","body","scent","oral","tools"];
-const PLANET_META = {
-  skincare:{star:"护肤星",en:"Skincare",desc:"洁面 / 精华 / 面霜<br>防晒 / 面膜 / 修护"},
-  makeup:{star:"彩妆星",en:"Makeup",desc:"底妆 / 眼妆 / 唇妆<br>腮红 / 定妆 / 工具"},
-  hair:{star:"头发星",en:"Hair Care",desc:"洗发 / 护发 / 修护<br>造型 / 头皮护理"},
-  body:{star:"身体星",en:"Body Care",desc:"身体护理 / 沐浴<br>脱毛 / 防晒 / 体香"},
-  scent:{star:"香氛星",en:"Fragrance",desc:"香水 / 护体香<br>香氛护理 / 氛围"},
-  oral:{star:"口腔星",en:"Oral Care",desc:"牙膏 / 漱口水<br>口腔护理 / 口气管理"},
-  tools:{star:"仪器星",en:"Beauty Devices",desc:"美容仪 / 导入导出<br>LED / 脱毛仪"},
-};
 const TIERS = {
-  core:  {zh:"内轨 · 必买基础", cls:"core"},
-  value: {zh:"中轨 · 明显提升", cls:"value"},
-  lux:   {zh:"外轨 · 锦上添花", cls:"lux"},
+  core:  {zh:"必买地基", cls:"core"},
+  value: {zh:"高性价比", cls:"value"},
+  lux:   {zh:"奢华天花板", cls:"lux"},
 };
 
 /* 细类分组：每个大类下的功能小类 + 一句功能说明 */
@@ -783,33 +519,6 @@ async function saveBoughtToSupabase(items){
   }
 }
 const isBought = (p)=> bought.has(keyOf(p));
-const LIST_STORE_KEY = "beautyDir.listState.v1";
-let listState = (function loadListState(){
-  try{
-    const raw = localStorage.getItem(LIST_STORE_KEY);
-    const data = raw ? JSON.parse(raw) : {};
-    return {want:new Set(data.want||[]), using:new Set(data.using||[])};
-  }catch(e){
-    return {want:new Set(), using:new Set()};
-  }
-})();
-function saveListState(){
-  try{
-    localStorage.setItem(LIST_STORE_KEY, JSON.stringify({
-      want:[...listState.want],
-      using:[...listState.using],
-    }));
-  }catch(e){}
-}
-function setListStatus(key, status){
-  if(status==="want"){
-    listState.want.has(key) ? listState.want.delete(key) : listState.want.add(key);
-  }
-  if(status==="using"){
-    listState.using.has(key) ? listState.using.delete(key) : listState.using.add(key);
-  }
-  saveListState();
-}
 
 function monogram(brand){
   const s = brand.replace(/[^A-Za-z\u4e00-\u9fa5]/g,"");
@@ -825,286 +534,6 @@ function placeholderHTML(brand){
 function imgFail(img){
   const thumb = img.closest(".thumb");
   if(thumb) thumb.innerHTML = placeholderHTML(img.getAttribute("data-mono-brand")||"");
-}
-
-function setCategory(cat, anchor){
-  state.cat = cat;
-  clearFloatingProducts();
-  document.querySelectorAll('.chip[data-group="cat"]').forEach(x=>x.setAttribute("aria-pressed", x.dataset.val===cat ? "true" : "false"));
-  document.querySelectorAll(".top-nav button").forEach(x=>x.setAttribute("aria-pressed", x.dataset.cat===cat ? "true" : "false"));
-  document.querySelectorAll(".planet").forEach(x=>x.setAttribute("aria-pressed", x.dataset.cat===cat ? "true" : "false"));
-  render();
-  document.getElementById("sections").scrollIntoView({behavior:"smooth", block:"start"});
-}
-
-function clearFloatingProducts(){
-  const orbit = document.getElementById("productOrbit");
-  orbit.classList.remove("show");
-  orbit.innerHTML = "";
-  document.body.classList.remove("orbit-open");
-  document.querySelectorAll(".planet").forEach(x=>x.setAttribute("aria-pressed","false"));
-  activePlanetCat = "";
-}
-
-let activePlanetCat = "";
-let activeProducts = [];
-let activeAnchor = null;
-function showFloatingProducts(cat, anchor){
-  const orbit = document.getElementById("productOrbit");
-  if(cat==="all"){ clearFloatingProducts(); return; }
-  if(activePlanetCat===cat && orbit.classList.contains("show")){ clearFloatingProducts(); return; }
-  activePlanetCat = cat;
-  activeAnchor = anchor;
-  const categoryItems = PRODUCTS.filter(p=>p.cat===cat);
-  activeProducts = categoryItems.slice(0,3);
-  renderProductSatellites(cat, anchor);
-}
-
-function renderProductSatellites(cat, anchor){
-  const orbit = document.getElementById("productOrbit");
-  const layout = chooseSatelliteLayout(anchor, activeProducts.length);
-  const nodes = [`<div class="orbit-track" style="--track-x:${layout.cx}px;--track-y:${layout.cy}px;--track-w:${layout.trackW}px;--track-h:${layout.trackH}px;--track-rot:${layout.rot}deg"></div>`];
-  activeProducts.forEach((p,i)=>{
-    const k = keyOf(p);
-    const t = TIERS[p.tier];
-    const pos = layout.points[i];
-    const thumb = p.img
-      ? `<img src="${p.img}" alt="${p.brand} ${p.name}" onerror="this.outerHTML='<span class=&quot;sat-fallback&quot;>${monogram(p.brand)}</span>'">`
-      : `<span class="sat-fallback">${monogram(p.brand)}</span>`;
-    nodes.push(`<button class="satellite" type="button" data-key="${k}" style="--sat-x:${pos.x}px;--sat-y:${pos.y}px;--ray-a:${pos.ray}deg;--ray-l:${pos.rayLen}px">
-      ${thumb}
-      <div class="sat-label">
-        <b>${p.name}</b>
-        <span>${shortTier(p.tier)}</span>
-      </div>
-    </button>`);
-  });
-  orbit.innerHTML = nodes.join("");
-  orbit.classList.add("show");
-  document.body.classList.add("orbit-open");
-}
-
-function shortTier(tier){
-  return tier==="core" ? "内轨" : tier==="value" ? "中轨" : "外轨";
-}
-
-function chooseSatelliteLayout(anchor, count){
-  if(innerWidth <= 600) return mobileSatelliteLayout(count);
-  const stage = document.getElementById("solarNav");
-  const stageBox = stage.getBoundingClientRect();
-  const orbBox = anchor.querySelector(".planet-orb").getBoundingClientRect();
-  const cx = orbBox.left - stageBox.left + orbBox.width/2;
-  const cy = orbBox.top - stageBox.top + orbBox.height/2;
-  const safe = Math.max(86, orbBox.width * .86);
-  const manual = manualSatelliteLayout(anchor.dataset.cat, cx, cy, safe, count);
-  if(manual) return manual;
-  const reserves = reservedRects(stageBox, anchor, safe);
-  const preferred = {skincare:["bottom","left","right","top"], body:["top","right","bottom","left"]};
-  const dirs = preferred[anchor.dataset.cat] || ["right","left","top","bottom"];
-  const hasPreference = !!preferred[anchor.dataset.cat];
-  const candidates = dirs.map((dir,i)=>{
-    const layout = layoutForDir(dir,cx,cy,safe,count,stageBox,reserves);
-    if(hasPreference) layout.score += i * 12000;
-    return layout;
-  });
-  return candidates.sort((a,b)=>a.score-b.score)[0];
-}
-
-function manualSatelliteLayout(cat,cx,cy,safe,count){
-  const configs = {
-    skincare:{dx:[-115,55,225],dy:safe+104,trackW:430,trackH:250,rot:-5},
-    body:{dx:[325,495,665],dy:150,trackW:620,trackH:250,rot:-7},
-  };
-  const c = configs[cat];
-  if(!c) return null;
-  const points = c.dx.slice(0,count).map(x=>({x:cx+x,y:cy+c.dy,ray:cat==="body"?175:-110,rayLen:44}));
-  return {cx,cy,points,score:0,trackW:c.trackW,trackH:c.trackH,rot:c.rot};
-}
-
-function layoutForDir(dir,cx,cy,safe,count,stageBox,reserves){
-  const labelW = 150, labelH = 52;
-  const points = Array.from({length:count},(_,i)=>{
-    const centered = i - (count - 1) / 2;
-    let x = cx, y = cy;
-    if(dir==="right"){ x = cx + safe + 110; y = cy + centered * 62; }
-    if(dir==="left"){ x = cx - safe - 110; y = cy + centered * 62; }
-    if(dir==="top"){ x = cx + centered * 170; y = cy - safe - 74; }
-    if(dir==="bottom"){ x = cx + centered * 170; y = cy + safe + 74; }
-    const ray = Math.atan2(cy-y, cx-x) * 180 / Math.PI;
-    return {x,y,ray,rayLen:44,rect:{left:x-labelW/2,top:y-labelH/2,right:x+labelW/2,bottom:y+labelH/2}};
-  });
-  let score = 0;
-  points.forEach(p=>{
-    score += outPenalty(p.rect, stageBox);
-    reserves.forEach(r=>{ score += overlapArea(p.rect,r) * 30; });
-  });
-  return {
-    cx,cy,points,score,
-    trackW: dir==="left" || dir==="right" ? safe*2+250 : safe*2+380,
-    trackH: dir==="left" || dir==="right" ? safe*2+260 : safe*2+170,
-    rot: dir==="top" || dir==="bottom" ? -4 : -12,
-  };
-}
-
-function reservedRects(stageBox, anchor, safe){
-  const toStage = (r, pad=0)=>({left:r.left-stageBox.left-pad,top:r.top-stageBox.top-pad,right:r.right-stageBox.left+pad,bottom:r.bottom-stageBox.top+pad});
-  const rects = [];
-  document.querySelectorAll(".planet").forEach(p=>{
-    const orb = p.querySelector(".planet-orb").getBoundingClientRect();
-    rects.push(toStage(orb, p===anchor ? safe*.55 : 56));
-    rects.push(toStage(p.querySelector(".planet-copy").getBoundingClientRect(), 26));
-  });
-  rects.push(toStage(document.querySelector(".sun").getBoundingClientRect(), 24));
-  const quote = document.querySelector(".hero-quote");
-  if(quote && getComputedStyle(quote).display!=="none") rects.push(toStage(quote.getBoundingClientRect(), 16));
-  const dock = document.querySelector(".glass-dock");
-  if(dock && getComputedStyle(dock).display!=="none") rects.push(toStage(dock.getBoundingClientRect(), 22));
-  return rects;
-}
-
-function overlapArea(a,b){
-  const w = Math.max(0, Math.min(a.right,b.right)-Math.max(a.left,b.left));
-  const h = Math.max(0, Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
-  return w*h;
-}
-
-function outPenalty(r, stageBox){
-  const w = stageBox.width, h = stageBox.height;
-  return Math.max(0,-r.left)*1200 + Math.max(0,-r.top)*1200 + Math.max(0,r.right-w)*1200 + Math.max(0,r.bottom-h)*1200;
-}
-
-function mobileSatelliteLayout(count){
-  return {cx:0,cy:0,trackW:0,trackH:0,rot:0,score:0,points:Array.from({length:count},()=>({x:0,y:0,ray:0,rayLen:0}))};
-}
-
-function buildSolar(){
-  const nav = document.getElementById("solarNav");
-  PLANETS.map(id=>CATS.find(c=>c.id===id)).filter(Boolean).forEach(c=>{
-    const count = PRODUCTS.filter(p=>p.cat===c.id).length;
-    const btn = document.createElement("button");
-    btn.className = "planet";
-    btn.type = "button";
-    btn.dataset.cat = c.id;
-    btn.setAttribute("aria-label", `${c.zh}，${count} 件产品`);
-    const m = PLANET_META[c.id];
-    btn.innerHTML = `<span class="planet-orb"><span class="ring"></span></span><span class="planet-copy"><b>${m.star}</b><em>${m.en}</em><span>${m.desc}</span><i>→</i></span>`;
-    btn.addEventListener("click",()=>setCategory(c.id, btn));
-    nav.appendChild(btn);
-  });
-  document.querySelectorAll(".top-nav button").forEach(btn=>{
-    btn.addEventListener("click",()=>setCategory(btn.dataset.cat));
-  });
-  document.getElementById("heroListBtn").addEventListener("click",()=>{
-    state.unboughtOnly = false;
-    document.getElementById("unboughtToggle").setAttribute("aria-pressed","false");
-    setCategory("all");
-  });
-  document.getElementById("nebulaToggle").addEventListener("click",clearFloatingProducts);
-  document.getElementById("productOrbit").addEventListener("click",e=>{
-    const actionBtn = e.target.closest("[data-list-action]");
-    if(actionBtn){
-      const item = actionBtn.closest(".sat-detail");
-      const k = item.dataset.key;
-      const action = actionBtn.dataset.listAction;
-      if(action==="bought"){
-        bought.has(k) ? bought.delete(k) : bought.add(k);
-        saveBought();
-      }else{
-        setListStatus(k, action);
-        if(action==="using" && listState.using.has(k) && !bought.has(k)){
-          bought.add(k);
-          saveBought();
-        }
-      }
-      renderSatelliteActions(item);
-      syncRenderedCard(k);
-      updateProgress();
-      return;
-    }
-    const sat = e.target.closest(".satellite");
-    if(!sat) return;
-    if(sat.dataset.action==="all"){
-      document.getElementById("sections").scrollIntoView({behavior:"smooth", block:"start"});
-      return;
-    }
-    showSatelliteDetail(sat);
-  });
-  document.addEventListener("click",e=>{
-    if(!document.getElementById("productOrbit").classList.contains("show")) return;
-    if(e.target.closest("#productOrbit,.planet,#nebulaToggle")) return;
-    clearFloatingProducts();
-  });
-}
-
-function renderSatelliteActions(item){
-  const k = item.dataset.key;
-  item.querySelector('[data-list-action="want"]').textContent = listState.want.has(k) ? "已收藏" : "收藏到我的清单";
-  item.querySelector('[data-list-action="want"]').setAttribute("aria-pressed", listState.want.has(k) ? "true" : "false");
-  item.querySelector('[data-list-action="bought"]').textContent = bought.has(k) ? "已买" : "标记为已买";
-  item.querySelector('[data-list-action="bought"]').setAttribute("aria-pressed", bought.has(k) ? "true" : "false");
-  item.querySelector('[data-list-action="using"]').textContent = listState.using.has(k) ? "正在用" : "标记为正在用";
-  item.querySelector('[data-list-action="using"]').setAttribute("aria-pressed", listState.using.has(k) ? "true" : "false");
-}
-
-function showSatelliteDetail(sat){
-  document.querySelectorAll(".satellite").forEach(x=>x.classList.toggle("active", x===sat));
-  document.querySelector(".sat-detail")?.remove();
-  const p = PRODUCTS.find(x=>keyOf(x)===sat.dataset.key);
-  if(!p) return;
-  const pos = detailPosition(sat);
-  const k = keyOf(p);
-  const thumb = p.img
-    ? `<img src="${p.img}" alt="${p.brand} ${p.name}" onerror="this.outerHTML='<span class=&quot;sat-fallback&quot;>${monogram(p.brand)}</span>'">`
-    : `<span class="sat-fallback">${monogram(p.brand)}</span>`;
-  document.getElementById("productOrbit").insertAdjacentHTML("beforeend", `<article class="sat-detail" data-key="${k}" style="--detail-x:${pos.x}px;--detail-y:${pos.y}px">
-    <div class="sat-detail-head">
-      ${thumb}
-      <div><h3>${p.name}</h3><em>${p.brand} · ${shortTier(p.tier)}</em></div>
-    </div>
-    <p><b>核心功效：</b>${SUBS[p.cat]?.find(s=>s.id===p.sub)?.fn || p.sub || "日常护理"}</p>
-    <p><b>推荐理由：</b>${p.note}</p>
-    <div class="sat-actions">
-      <button type="button" data-list-action="want" aria-pressed="${listState.want.has(k)}">${listState.want.has(k)?"已收藏":"收藏到我的清单"}</button>
-      <button type="button" data-list-action="bought" aria-pressed="${bought.has(k)}">${bought.has(k)?"已买":"标记为已买"}</button>
-      <button type="button" data-list-action="using" aria-pressed="${listState.using.has(k)}">${listState.using.has(k)?"正在用":"标记为正在用"}</button>
-    </div>
-  </article>`);
-}
-
-function detailPosition(sat){
-  if(innerWidth <= 600) return {x:0,y:0};
-  const stageBox = document.getElementById("solarNav").getBoundingClientRect();
-  const r = sat.getBoundingClientRect();
-  const base = {x:r.left-stageBox.left+r.width/2,y:r.top-stageBox.top+r.height/2};
-  if(activePlanetCat==="hair") return {x:base.x-340,y:base.y};
-  if(activePlanetCat==="body") return {x:base.x+340,y:base.y};
-  const w = 260, h = 238;
-  const candidates = [
-    {x:base.x+340,y:base.y},
-    {x:base.x-340,y:base.y},
-    {x:base.x,y:base.y+260},
-    {x:base.x,y:base.y-260},
-  ];
-  const reserves = reservedRects(stageBox, activeAnchor, 150);
-  return candidates.map((c,i)=>{
-    const rect = {left:c.x-w/2,top:c.y-h/2,right:c.x+w/2,bottom:c.y+h/2};
-    let score = outPenalty(rect, stageBox);
-    reserves.forEach(r=>score += overlapArea(rect,r)*30);
-    if(activePlanetCat==="hair" && i===1) score -= 200000;
-    return {...c,score};
-  }).sort((a,b)=>a.score-b.score)[0];
-}
-
-function syncRenderedCard(k){
-  const card = [...document.querySelectorAll(".card")].find(x=>x.dataset.key===k);
-  if(!card) return;
-  const nowBought = bought.has(k);
-  card.classList.toggle("bought", nowBought);
-  const btn = card.querySelector(".buy");
-  if(btn){
-    btn.setAttribute("aria-pressed", nowBought?"true":"false");
-    btn.textContent = nowBought ? "✓ 已入手" : "○ 标记已买";
-  }
 }
 
 function cardHTML(p){
@@ -1208,7 +637,6 @@ function buildChips(){
     b.textContent=label; b.dataset.val=val; b.dataset.group=group;
     b.setAttribute("aria-pressed", active?"true":"false");
     b.addEventListener("click",()=>{
-      if(group==="cat"){ setCategory(val); return; }
       state[group]=val;
       document.querySelectorAll(`.chip[data-group="${group}"]`).forEach(x=>x.setAttribute("aria-pressed","false"));
       b.setAttribute("aria-pressed","true");
@@ -1231,9 +659,8 @@ document.getElementById("search").addEventListener("input",(e)=>{
 /* stats */
 function stats(){
   const el=document.getElementById("stats");
-  if(!el) return;
   const core = PRODUCTS.filter(p=>p.tier==="core").length;
-  const data=[[PRODUCTS.length,"件精选产品"],[PLANETS.length,"颗导航行星"],[core,"件必买基础"]];
+  const data=[[PRODUCTS.length,"件精选产品"],[CATS.length,"个品类"],[core,"件必买地基"]];
   el.innerHTML = data.map(d=>`<div class="stat"><div class="n">${d[0]}</div><div class="l">${d[1]}</div></div>`).join("")
     + `<div class="stat" id="progStat"></div>`;
   updateProgress();
@@ -1242,18 +669,9 @@ function stats(){
 /* 已入手进度，随勾选实时更新 */
 function updateProgress(){
   const el=document.getElementById("progStat");
+  if(!el) return;
   const have = PRODUCTS.reduce((n,p)=> n + (isBought(p)?1:0), 0);
-  if(el) el.innerHTML = `<div class="n">${have} / ${PRODUCTS.length}</div><div class="l">已入手 / 共</div>`;
-  const pct = Math.round(have / PRODUCTS.length * 100);
-  const ring = document.getElementById("heroProgress");
-  if(ring){
-    ring.style.setProperty("--p", pct);
-    ring.querySelector("span").textContent = pct + "%";
-  }
-  const done = document.getElementById("doneCount");
-  const wish = document.getElementById("wishCount");
-  if(done) done.textContent = have;
-  if(wish) wish.textContent = PRODUCTS.length - have;
+  el.innerHTML = `<div class="n">${have} / ${PRODUCTS.length}</div><div class="l">已入手 / 共</div>`;
 }
 
 /* 「只看未买」开关 */
@@ -1266,7 +684,6 @@ ubt.addEventListener("click",()=>{
 
 async function startBeautyPage(){
   await loadBoughtFromSupabase();
-  buildSolar();
   buildChips();
   stats();
   render();
